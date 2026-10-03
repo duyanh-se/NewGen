@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+﻿# NewGen Construction
 
-## Getting Started
+Landing page tiếng Việt, Next.js App Router + Tailwind CSS + ShadcnUI (Base UI).
 
-First, run the development server:
+## Chạy trên máy
 
-```bash
+```sh
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Mở http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Xuất bản tĩnh
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```sh
+npm run build
+```
 
-## Learn More
+Thư mục `out/` là bản website tĩnh. Cấu hình `output: export` không sử dụng `next start`.
 
-To learn more about Next.js, take a look at the following resources:
+## Nội dung và hình ảnh
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Nguồn: `../pics/Newgen Profile_file xem_3.pdf` và ảnh trong `../pics`.
+- Nội dung trang: `src/app/page.tsx`.
+- Theme NewGen: `src/app/brand.css`; styles nền Shadcn: `src/app/globals.css`.
+- Ảnh đã tối ưu: `public/images/`.
+- Thông tin doanh nghiệp lấy từ phần giới thiệu hồ sơ; không đưa tài liệu hợp đồng, chữ ký và thông tin tài khoản vào website.
+- 36 cán bộ chuyên môn là tổng số nhân sự trong bảng ở trang PDF 13 (trang in 24–25). Vốn điều lệ lấy từ trang PDF 3. Thông tin phản ánh hồ sơ được cung cấp.
+- Dự án Đồng Đăng: PDF 18; 31 căn nhà Hà Nam: PDF 21; Hoa Đất 3: PDF 22. Đối tác: PDF 117.
+- Nút gọi/email mở ứng dụng tương ứng của khách truy cập. Không có biểu mẫu gửi dữ liệu hoặc backend.
