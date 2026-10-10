@@ -53,7 +53,7 @@ export function ServicesSection() {
       copy: card.querySelector<HTMLElement>(".service-scene-copy")!,
     }));
     const enabled = window.matchMedia(
-      "(min-width: 1000px) and (min-height: 700px) and (prefers-reduced-motion: no-preference)",
+      "(min-width: 1000px) and (min-height: 700px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
     );
     let frame = 0;
     let flight = 0;
@@ -140,10 +140,8 @@ export function ServicesSection() {
       }
       const aboutTop = window.scrollY + about.getBoundingClientRect().top;
       const servicesTop = window.scrollY + section.getBoundingClientRect().top;
-      const down = event.deltaY > 0;
       const atAbout = Math.abs(window.scrollY - aboutTop) <= 2;
-      const atServices = Math.abs(window.scrollY - servicesTop) <= 2;
-      if ((!down || !atAbout) && (down || !atServices)) {
+      if (!atAbout) {
         bridgeAccumulated = 0;
         return;
       }
@@ -153,7 +151,7 @@ export function ServicesSection() {
       bridgeAccumulated += event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
       if (Math.abs(bridgeAccumulated) < 24) return;
       bridgeAccumulated = 0;
-      travelBetweenSections(down ? servicesTop : aboutTop);
+      travelBetweenSections(servicesTop);
     };
     const wheel = (event: WheelEvent) => {
       if (
@@ -177,10 +175,9 @@ export function ServicesSection() {
       const bounds = section.getBoundingClientRect();
       const step = (section.offsetHeight - screen.offsetHeight) / (cards.length - 1);
       const progress = -bounds.top / step;
-      const down = event.deltaY > 0;
       // Let the page scroll normally beyond the first and last scene.
       if (progress < -0.01 || progress > cards.length - 1 + 0.01 ||
-        (!down && progress <= 0.01) || (down && progress >= cards.length - 1 - 0.01)) {
+        progress >= cards.length - 1 - 0.01) {
         accumulated = 0;
         return;
       }
@@ -190,7 +187,7 @@ export function ServicesSection() {
       accumulated += event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
       if (Math.abs(accumulated) < 24) return;
       accumulated = 0;
-      const next = down ? Math.floor(progress + 0.01) + 1 : Math.ceil(progress - 0.01) - 1;
+      const next = Math.floor(progress + 0.01) + 1;
       travel(window.scrollY + bounds.top + Math.max(0, Math.min(cards.length - 1, next)) * step);
     };
 
@@ -260,6 +257,11 @@ export function ServicesSection() {
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", sync);
     const handleWheel = (event: WheelEvent) => {
+      if (event.deltaY <= 0) {
+        cancel();
+        cancelBridge();
+        return;
+      }
       // Finish the current service transition before handing back to the bridge.
       if (flight || performance.now() < drainingUntil) {
         wheel(event);

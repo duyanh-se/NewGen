@@ -219,7 +219,9 @@ export function StoryMotion({ children }: { children: ReactNode }) {
     const foundation = document.querySelector<HTMLElement>(".foundation");
     if (!section || !foundation) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const coarse = window.matchMedia("(pointer: coarse)");
+    const desktop = window.matchMedia(
+      "(min-width: 1000px) and (min-height: 700px) and (hover: hover) and (pointer: fine)",
+    );
     const root = document.documentElement;
     let lastScrollY = window.scrollY;
     let timer: ReturnType<typeof setTimeout>;
@@ -299,10 +301,8 @@ export function StoryMotion({ children }: { children: ReactNode }) {
       }, 180);
     };
     const travel = (target: number) => {
-      const returning = target < window.scrollY;
       clearTimeout(timer);
-      if (returning) setState("returning");
-      else setState("pending");
+      setState("pending");
       moving = true;
       draining = true;
       root.setAttribute("data-about-transition", "");
@@ -320,12 +320,16 @@ export function StoryMotion({ children }: { children: ReactNode }) {
           moving = false;
           root.removeAttribute("data-about-transition");
           drain();
-          if (!returning) timer = setTimeout(() => setState("ready"), 100);
+          timer = setTimeout(() => setState("ready"), 100);
         }
       };
       flight = requestAnimationFrame(tick);
     };
     const wheel = (event: WheelEvent) => {
+      if (event.deltaY <= 0) {
+        cancel();
+        return;
+      }
       if (
         event.defaultPrevented ||
         root.hasAttribute("data-section-transition") ||
@@ -333,7 +337,7 @@ export function StoryMotion({ children }: { children: ReactNode }) {
         root.hasAttribute("data-services-transition") ||
         root.hasAttribute("data-lower-section-transition") ||
         reduced.matches ||
-        coarse.matches ||
+        !desktop.matches ||
         root.dataset.intro ||
         document.querySelector('[role="dialog"]:not([hidden])') ||
         event.ctrlKey ||
@@ -364,15 +368,10 @@ export function StoryMotion({ children }: { children: ReactNode }) {
       const foundationDestination = aboutDestination - foundation.offsetHeight;
       const y = window.scrollY;
       const down =
-        event.deltaY > 0 &&
         y >= foundationDestination - 2 &&
         y < aboutDestination - 2 &&
         foundation.getBoundingClientRect().top <= 2;
-      const up =
-        event.deltaY < 0 &&
-        y > foundationDestination + 2 &&
-        y <= aboutDestination + 2;
-      if (!down && !up) {
+      if (!down) {
         accumulated = 0;
         return;
       }
@@ -393,10 +392,11 @@ export function StoryMotion({ children }: { children: ReactNode }) {
             : 1);
       if (Math.abs(accumulated) >= 32) {
         accumulated = 0;
-        travel(down ? aboutDestination : foundationDestination);
+        travel(aboutDestination);
       }
     };
     const syncReducedMotion = () => {
+      cancel();
       section.dataset.timeEffect = reduced.matches ? "ready" : "pending";
       schedule();
     };
@@ -404,8 +404,9 @@ export function StoryMotion({ children }: { children: ReactNode }) {
     syncReducedMotion();
     window.addEventListener("wheel", wheel, { passive: false });
     window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
+    window.addEventListener("resize", syncReducedMotion);
     reduced.addEventListener("change", syncReducedMotion);
+    desktop.addEventListener("change", syncReducedMotion);
     window.addEventListener("newgen:back-to-top", cancel);
     return () => {
       cancel();
@@ -413,8 +414,9 @@ export function StoryMotion({ children }: { children: ReactNode }) {
       cancelAnimationFrame(frame);
       window.removeEventListener("wheel", wheel);
       window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
+      window.removeEventListener("resize", syncReducedMotion);
       reduced.removeEventListener("change", syncReducedMotion);
+      desktop.removeEventListener("change", syncReducedMotion);
       window.removeEventListener("newgen:back-to-top", cancel);
       delete section.dataset.timeEffect;
       section.style.removeProperty("--about-overlap-offset");
@@ -426,7 +428,7 @@ export function StoryMotion({ children }: { children: ReactNode }) {
       ".leadership-section",
     );
     const enabled = window.matchMedia(
-      "(min-width: 1000px) and (min-height: 700px) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
+      "(min-width: 1000px) and (min-height: 700px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
     );
     if (!services || !leadershipSection) return;
 
@@ -464,6 +466,10 @@ export function StoryMotion({ children }: { children: ReactNode }) {
       flight = requestAnimationFrame(tick);
     };
     const wheel = (event: WheelEvent) => {
+      if (event.deltaY <= 0) {
+        cancel();
+        return;
+      }
       if (
         !enabled.matches ||
         event.defaultPrevented ||
@@ -504,16 +510,12 @@ export function StoryMotion({ children }: { children: ReactNode }) {
         services.offsetHeight -
         window.innerHeight;
       const leadership = y + leadershipSection.getBoundingClientRect().top;
-      // Services owns its scenes; this controller bridges the last scene and
-      // leadership across the full viewport in either direction.
+      // Services owns its scenes; this controller advances to leadership.
       if (y < lastService - 2) {
         accumulated = 0;
         return;
       }
-      const down = event.deltaY > 0;
-      const bridging = down
-        ? y < leadership - 2
-        : y > lastService + 2 && y <= leadership + 2;
+      const bridging = y < leadership - 2;
       if (!bridging) {
         accumulated = 0;
         return;
@@ -534,7 +536,7 @@ export function StoryMotion({ children }: { children: ReactNode }) {
             : 1);
       if (Math.abs(accumulated) >= 24) {
         accumulated = 0;
-        travel(down ? leadership : lastService);
+        travel(leadership);
       }
     };
     const sync = () => cancel();

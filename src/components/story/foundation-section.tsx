@@ -13,7 +13,9 @@ export function FoundationSection() {
     if (!hero || !section || !stage) return;
     const root = document.documentElement;
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const coarse = window.matchMedia("(pointer: coarse)");
+    const desktop = window.matchMedia(
+      "(min-width: 1000px) and (min-height: 700px) and (hover: hover) and (pointer: fine)",
+    );
     let frame = 0;
     let flight = 0;
     let moving = false;
@@ -92,7 +94,6 @@ export function FoundationSection() {
       }, 180);
     };
     const travel = (target: number) => {
-      if (target < window.scrollY) returnToPast();
       moving = true;
       draining = true;
       clearTimeout(revealTimer);
@@ -117,6 +118,10 @@ export function FoundationSection() {
       flight = requestAnimationFrame(tick);
     };
     const wheel = (event: WheelEvent) => {
+      if (event.deltaY <= 0) {
+        cancel();
+        return;
+      }
       if (
         event.defaultPrevented ||
         root.hasAttribute("data-about-transition") ||
@@ -124,7 +129,7 @@ export function FoundationSection() {
         root.hasAttribute("data-services-transition") ||
         root.hasAttribute("data-lower-section-transition") ||
         motion.matches ||
-        coarse.matches ||
+        !desktop.matches ||
         root.dataset.intro ||
         document.querySelector('[role="dialog"]:not([hidden])') ||
         event.ctrlKey ||
@@ -154,11 +159,9 @@ export function FoundationSection() {
       const y = window.scrollY;
       const end = destination();
       const down =
-        event.deltaY > 0 &&
         y < end - 2 &&
         hero.getBoundingClientRect().bottom <= window.innerHeight + 2;
-      const up = event.deltaY < 0 && y > 2 && y <= end + 2;
-      if (!down && !up) {
+      if (!down) {
         accumulated = 0;
         return;
       }
@@ -179,12 +182,11 @@ export function FoundationSection() {
             : 1);
       if (Math.abs(accumulated) >= 32) {
         accumulated = 0;
-        travel(down ? end : 0);
+        travel(end);
       }
     };
     const measure = () => {
       cancel();
-      root.toggleAttribute("data-hero-snap", !motion.matches);
       schedule();
       if (motion.matches) reveal();
     };
@@ -210,6 +212,7 @@ export function FoundationSection() {
     window.addEventListener("hashchange", interrupt);
     window.addEventListener("newgen:back-to-top", interrupt);
     motion.addEventListener("change", measure);
+    desktop.addEventListener("change", measure);
     measure();
     update();
     reveal();
@@ -228,7 +231,7 @@ export function FoundationSection() {
       window.removeEventListener("hashchange", interrupt);
       window.removeEventListener("newgen:back-to-top", interrupt);
       motion.removeEventListener("change", measure);
-      root.removeAttribute("data-hero-snap");
+      desktop.removeEventListener("change", measure);
       delete section.dataset.reveal;
       hero.removeAttribute("data-scroll-active");
       ["--hero-drift", "--hero-copy-drift", "--hero-copy-opacity"].forEach(
