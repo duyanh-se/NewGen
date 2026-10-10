@@ -70,7 +70,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# local content backups and database files (keep SQL migrations)
+# local content backups and database files
 /backups/
 *.dump
 *.sql.gz
@@ -79,3 +79,13 @@ next-env.d.ts
 *.db
 /supabase/.temp/
 /supabase/.branches/
+
+# project-local configuration, docs, migrations and tests
+/.openai/
+/docs/
+/supabase/migrations/
+/tests/
+
+# Markdown documents
+*.md
+*.markdown
