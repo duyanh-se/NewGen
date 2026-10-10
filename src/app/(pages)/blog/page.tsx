@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, BookOpen } from "lucide-react";
 import { PageHeading,ContactCallout } from "@/components/site/page-parts";
 import { Pagination } from "@/components/site/pagination";
 import { listContent } from "@/lib/content/data";
@@ -37,6 +37,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
           </div>
         ) : (
           <div className="inner-empty" data-page-reveal="">
+            <BookOpen aria-hidden="true" />
             <h2>Bài viết đang được cập nhật.</h2>
             <p>Chưa có bài viết được xuất bản.</p>
             <Link className="text-link" href="/du-an">Khám phá công trình NewGen <ArrowUpRight size={18} aria-hidden="true" /></Link>

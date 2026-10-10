@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { HardHat, ArrowUpRight } from "lucide-react";
 import {
   ProjectCards,
   ContactCallout,
@@ -33,6 +33,7 @@ export default async function ProjectsPage() {
           <ProjectCards items={projects} />
         ) : (
           <div className="inner-empty">
+            <HardHat aria-hidden="true" />
             <h2>Công trình đang được cập nhật.</h2>
             <p>Chưa có công trình được xuất bản.</p>
             <Link className="text-link" href="/nang-luc-xay-dung">

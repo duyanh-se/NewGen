@@ -212,6 +212,9 @@ main.landing-page .capability-item { padding-block: 24px; border-top: 1px solid 
 main.landing-page .capability-item > svg { width: 44px; height: 44px; padding: 10px; border-radius: 10px; background: #b8d8ee15; }
 main.landing-page .capability-link { min-height: 48px; color: var(--ng-sky); border-bottom: 1px solid #b8d8ee70; }
 main.landing-page .capability-photo { border-radius: 16px; overflow: hidden; }
+main.landing-page .leadership-heading { display: block; }
+main.landing-page .leadership-heading > p { max-width: 65ch; margin-top: 20px; }
+main.landing-page :is(.capability-photo span, .contact-details span) { font-size: 12px; letter-spacing: 1px; }
 main.landing-page .faq-list { gap: 12px; }
 main.landing-page .faq-list [data-slot="accordion-item"] { border: 1px solid #d3dfe8; border-radius: 12px; background: #fff; }
 main.landing-page .faq-list [data-slot="accordion-trigger"] { padding: 22px 24px; gap: 24px; border-radius: 12px; align-items: center; }
