@@ -28,7 +28,6 @@ export function PageHeading({
         )}
         <span aria-current="page">{label}</span>
       </nav>
-      <div className="eyebrow">{parent?.label ?? label}</div>
       <h1>{title}</h1>
       <p className="inner-intro">{description}</p>
     </div>
@@ -54,7 +53,6 @@ export function ContactCallout() {
     <section className="inner-callout">
       <div className="wrap">
         <div>
-          <div className="eyebrow light">ĐỒNG HÀNH CÙNG NEWGEN</div>
           <h2>Cùng bắt đầu công trình tiếp theo.</h2>
           <p>Chia sẻ nhu cầu và trao đổi trực tiếp với đội ngũ NewGen.</p>
         </div>

@@ -84,6 +84,24 @@
 @media (hover: none), (pointer: coarse) {
   .card .cardPhoto { aspect-ratio: 4 / 5; }
 }
+@media (max-width: 700px), (hover: none), (pointer: coarse) {
+  .card {
+    display: block;
+    background: white;
+    color: var(--ng-navy);
+    border: 1px solid #dce5ed;
+  }
+  .card .cardPhoto { aspect-ratio: 3 / 2; }
+  .cardPhoto::after { display: none; }
+  .card .cardContent { background: white; }
+  .card .cardContent h2 { font-size: 20px; }
+  .cardDetails { grid-template-rows: 1fr; opacity: 1; visibility: visible; }
+  .cardFacts { border-color: #dce5ed; }
+  .cardFacts dt { color: var(--ng-muted); font-size: 13px; }
+  .cardFacts dd { font-size: 14px; line-height: 1.6; }
+  .cardLink { color: var(--ng-blue); border-color: #21598a66; }
+  .card:is(:hover, :focus-visible) .cardContent { background: white; }
+}
 .page[data-project-motion] [data-project-reveal] > * {
   opacity: var(--project-progress, 1);
   transform: translate3d(0, calc((1 - var(--project-progress, 1)) * var(--project-distance)), 0);
