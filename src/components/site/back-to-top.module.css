@@ -1,0 +1,50 @@
+.button {
+  position: fixed;
+  right: 32px;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  z-index: 45;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #ffffff40;
+  border-radius: 12px;
+  background: var(--ng-navy);
+  color: #fff;
+  box-shadow: 0 6px 24px #0d2c4826;
+  cursor: pointer;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.button[hidden] {
+  display: none;
+}
+
+@media (hover: hover) {
+  .button:hover {
+    background: var(--ng-blue);
+    transform: translateY(-3px);
+  }
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button:focus-visible {
+  outline: 3px solid #67a6d2;
+  outline-offset: 4px;
+}
+
+@media (max-width: 800px) {
+  .button {
+    right: 20px;
+    bottom: max(20px, env(safe-area-inset-bottom));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}

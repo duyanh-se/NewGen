@@ -1,0 +1,75 @@
+.services-story { position: relative; background: #edf3f6; color: var(--ng-navy); }
+.services-screen {
+  background:
+    linear-gradient(110deg, rgb(237 243 246 / .88), rgb(237 243 246 / .68)),
+    url("/images/pic11.webp") center / cover no-repeat;
+}
+.services-content { padding-block: 72px; }
+.services-heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(48px, 6vw, 88px); margin-bottom: 40px; }
+.services-heading .eyebrow { margin-bottom: 0; }
+.services-heading > p { max-width: 540px; color: var(--ng-muted); font-size: 15px; line-height: 1.6; margin: 0; }
+.services-scenes { display: grid; gap: 72px; }
+.service-scene { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(48px, 6vw, 88px); min-width: 0; }
+.service-scene-image { position: relative; width: 100%; max-width: 560px; aspect-ratio: 3 / 2; border-radius: 24px; overflow: hidden; }
+.service-scene-image img { object-fit: cover; }
+.service-scene-copy { align-self: center; max-width: 540px; min-width: 0; }
+.service-scene-label { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--ng-blue); margin-bottom: 24px; }
+.service-scene-label span { font-size: 12px; letter-spacing: 2px; }
+.service-scene-copy h3 { font-size: clamp(28px, 2.8vw, 42px); font-weight: 600; letter-spacing: -1px; line-height: 1.2; }
+.service-scene-copy p { font-size: 16px; line-height: 1.7; color: var(--ng-muted); margin-top: 20px; }
+.service-scene-tags { margin-top: 30px; padding-top: 20px; border-top: 1px solid #dce5ed; color: var(--ng-blue); font-size: 13px; line-height: 1.6; }
+.services-steps { display: none; }
+.services-story[data-pinned] { height: 400svh; }
+.services-story[data-pinned] .services-screen { position: sticky; top: 0; height: 100svh; }
+.services-story[data-pinned] .services-content { height: 100%; display: grid; grid-template-rows: auto auto; align-content: center; row-gap: clamp(32px, 6svh, 56px); padding-block: 64px; }
+.services-story[data-pinned] .services-heading { margin-bottom: 0; }
+.services-story[data-pinned] .services-scenes { position: relative; display: block; height: clamp(320px, 46svh, 460px); }
+.services-story[data-pinned] .service-scene { position: absolute; inset: 0; }
+.services-story[data-pinned] .service-scene-image,
+.services-story[data-pinned] .service-scene-copy { will-change: opacity, transform; }
+html[data-services-transition] { scroll-snap-type: none; scroll-behavior: auto; }
+html[data-about-services-transition] { scroll-snap-type: none; scroll-behavior: auto; }
+.services-story[data-pinned] .services-steps { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 28px; padding-top: 16px; border-top: 2px solid #ccdbe5; }
+.services-steps::before { content: ""; position: absolute; inset: -2px 0 auto; height: 2px; background: var(--ng-blue); transform: scaleX(var(--services-progress, .25)); transform-origin: left; }
+.services-step { display: flex; align-items: center; text-align: left; gap: 14px; padding: 10px 12px; background: transparent; border: 0; color: var(--ng-muted); font-size: 13px; cursor: pointer; }
+.services-step > span { font-size: 11px; opacity: .65; }
+.services-step[aria-current="step"] { color: var(--ng-blue); font-weight: 700; }
+.services-step:focus-visible { outline: 2px solid var(--ng-blue); outline-offset: 2px; }
+.services-story [data-services-enter] { --services-enter-delay: 0ms; }
+.services-story [data-services-enter="description"] { --services-enter-delay: 70ms; }
+.services-story [data-services-enter="image"] { --services-enter-delay: 100ms; }
+.services-story [data-services-enter="copy"] { --services-enter-delay: 180ms; }
+.services-story [data-services-reveal="pending"] { opacity: 0; }
+.services-story [data-services-reveal="ready"] { animation: services-enter-copy 600ms var(--story-ease) var(--services-enter-delay) both; }
+.services-story [data-services-enter="image"][data-services-reveal="ready"] { animation-name: services-enter-image; animation-duration: 800ms; }
+.services-story [data-services-enter="copy"][data-services-reveal="ready"] { animation-name: services-enter-body; }
+.services-story:focus-within [data-services-enter] { opacity: 1; animation: none; }
+@keyframes services-enter-copy { from { opacity: 0; transform: translate3d(0, 18px, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+@keyframes services-enter-image { from { opacity: 0; transform: scale(1.045); } to { opacity: 1; transform: scale(1); } }
+@keyframes services-enter-body { from { opacity: 0; transform: translate3d(24px, 0, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+@media(min-width:1000px) and (max-height:799px) {
+  .services-story[data-pinned] .services-content { padding-block: 48px; }
+  .services-heading { margin-bottom: 24px; }
+  .service-scene-label { margin-bottom: 16px; }
+  .service-scene-copy h3 { font-size: 28px; }
+  .service-scene-copy p { font-size: 15px; margin-top: 14px; }
+  .service-scene-tags { margin-top: 18px; padding-top: 14px; }
+}
+@media(max-width:999px) {
+  .services-heading { grid-template-columns: 1fr; align-items: start; gap: 18px; max-width: 560px; margin-inline: auto; }
+  .services-heading > p { max-width: 540px; }
+  .service-scene { grid-template-columns: 1fr; gap: 28px; max-width: 560px; margin-inline: auto; width: 100%; }
+  .service-scene-image { border-radius: 20px; }
+  .service-scene-copy { max-width: none; }
+  .services-content { padding-block: 56px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .services-story [data-services-enter] { opacity: 1 !important; transform: none !important; animation: none !important; }
+  .services-story[data-pinned] { height: auto; }
+  .services-story[data-pinned] .services-screen { position: static; height: auto; }
+  .services-story[data-pinned] .services-scenes { display: grid; }
+  .services-story[data-pinned] .service-scene { position: relative; }
+  .services-story[data-pinned] .service-scene-image,
+  .services-story[data-pinned] .service-scene-copy { opacity: 1 !important; transform: none !important; }
+  .services-story[data-pinned] .services-steps { display: none; }
+}

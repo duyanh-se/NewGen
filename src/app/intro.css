@@ -1,0 +1,108 @@
+/* Draw and assemble the original logo, then fly it into the live header slot. */
+.website-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  isolation: isolate;
+  outline: none;
+}
+.website-intro[hidden] {
+  display: none;
+}
+.intro-scene {
+  position: absolute;
+  inset: 0;
+  background: #0d2c48;
+}
+.intro-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(300px, 58vw);
+  aspect-ratio: 548 / 434;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  pointer-events: none;
+}
+.intro-logo-vector {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  color: #fff;
+}
+.intro-logo-vector path {
+  fill: currentColor;
+  fill-opacity: 0;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.website-intro[data-phase] .intro-logo-vector path {
+  animation:
+    logo-trace 1200ms var(--piece-delay) ease both,
+    logo-assemble 1400ms var(--piece-delay) cubic-bezier(0.22, 1, 0.36, 1) both,
+    logo-solid 650ms calc(var(--piece-delay) + 650ms) ease both;
+}
+@keyframes logo-trace {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes logo-assemble {
+  from {
+    transform: translate(var(--piece-x), var(--piece-y));
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+@keyframes logo-solid {
+  to {
+    fill-opacity: 1;
+    stroke-width: 0;
+  }
+}
+@keyframes intro-fade {
+  to {
+    opacity: 0;
+  }
+}
+.website-intro[data-phase="docking"] .intro-scene {
+  animation: intro-fade 1100ms ease both;
+}
+.website-intro[data-phase="docking"] .intro-logo-vector {
+  color: #20568a;
+  transition: color 1000ms ease;
+}
+html[data-intro] .brand img {
+  visibility: hidden;
+}
+html[data-intro="playing"] .hero-content > h1,
+html[data-intro="playing"] .hero-content > p,
+html[data-intro="playing"] .hero-actions {
+  animation: none;
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .website-intro {
+    display: none !important;
+  }
+  html[data-intro] .brand img {
+    visibility: visible;
+  }
+  html[data-intro] .hero-content > h1,
+  html[data-intro] .hero-content > p,
+  html[data-intro] .hero-actions {
+    opacity: 1;
+  }
+}

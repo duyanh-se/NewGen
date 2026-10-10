@@ -12,6 +12,14 @@
 
 # testing
 /coverage
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# local test artifacts and temporary files
+/tmp/
+.cache/
 
 # next.js
 /.next/
@@ -22,16 +30,38 @@
 
 # misc
 .DS_Store
+Thumbs.db
+Desktop.ini
+
+# private keys and local credentials
 *.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+.aws/
+.ssh/
+.npmrc
+.netrc
+_netrc
+credentials.json
+service-account*.json
 
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+*.log
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -39,3 +69,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local content backups and database files (keep SQL migrations)
+/backups/
+*.dump
+*.sql.gz
+*.sqlite
+*.sqlite3
+*.db
+/supabase/.temp/
+/supabase/.branches/
