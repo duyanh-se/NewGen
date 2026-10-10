@@ -79,7 +79,7 @@ export default function Home() {
                   <span>Vững niềm tin.</span>
                 </h1>
                 <p>
-                  Bền vững từ nền móng. Tận tâm trong từng chi tiết.
+                  Bền vững từ nền móng. Tận tâm từng chi tiết.
                   <br className="desktop-break" /> NewGen đồng hành cùng bạn
                   kiến tạo những công trình có giá trị lâu dài.
                 </p>
@@ -93,7 +93,8 @@ export default function Home() {
                     <ArrowUpRight size={18} aria-hidden="true" />
                   </Link>
                   <Link className="hero-secondary" href="/lien-he">
-                    Trao đổi cùng NewGen <ArrowUpRight size={18} aria-hidden="true" />
+                    Trao đổi cùng NewGen{" "}
+                    <ArrowUpRight size={18} aria-hidden="true" />
                   </Link>
                 </div>
                 <div className="hero-values">
@@ -142,8 +143,12 @@ export default function Home() {
                       nước, kiến trúc sư và chuyên ngành khảo sát trắc địa.
                     </p>
 
-                    <Link className="text-link about-step" href="/nang-luc-xay-dung">
-                      Tìm hiểu năng lực NewGen <Plus size={17} aria-hidden="true" />
+                    <Link
+                      className="text-link about-step"
+                      href="/nang-luc-xay-dung"
+                    >
+                      Tìm hiểu năng lực NewGen{" "}
+                      <Plus size={17} aria-hidden="true" />
                     </Link>
                   </div>
                   <div className="about-values about-step">
@@ -249,8 +254,12 @@ export default function Home() {
                     );
                   })}
                 </div>
-                <Link className="text-link capability-link" href="/nang-luc-xay-dung">
-                  Khám phá năng lực xây dựng <ArrowUpRight size={18} aria-hidden="true" />
+                <Link
+                  className="text-link capability-link"
+                  href="/nang-luc-xay-dung"
+                >
+                  Khám phá năng lực xây dựng{" "}
+                  <ArrowUpRight size={18} aria-hidden="true" />
                 </Link>
               </div>
               <div className="capability-photo">
@@ -277,7 +286,7 @@ export default function Home() {
               <div>
                 <div className="eyebrow">THÔNG TIN HỮU ÍCH</div>
                 <h2>
-                  Trước khi
+                  Trước khi{" "}
                   <br />
                   bắt đầu hợp tác.
                 </h2>
@@ -325,7 +334,10 @@ export default function Home() {
                   <Mail aria-hidden="true" />
                   <div>
                     <span>EMAIL</span>
-                    <strong>{company.email.split("@")[0]}<wbr />@{company.email.split("@")[1]}</strong>
+                    <strong>
+                      {company.email.split("@")[0]}
+                      <wbr />@{company.email.split("@")[1]}
+                    </strong>
                   </div>
                 </a>
                 <div>

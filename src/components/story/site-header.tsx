@@ -11,7 +11,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { BackToTop } from "@/components/site/back-to-top";
 
 const links = [
-  ["Về NewGen", "/gioi-thieu"],
+  ["Giới thiệu về NewGen", "/gioi-thieu"],
   ["Năng lực xây dựng", "/nang-luc-xay-dung"],
   ["Dự án tiêu biểu", "/du-an"],
   ["Blog", "/blog"],
