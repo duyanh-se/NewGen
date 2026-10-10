@@ -16,7 +16,7 @@ import { PrinciplesStory } from "./principles-story";
 import { OrganizationSection } from "./organization-section";
 
 export const metadata: Metadata = {
-  title: "Về NewGen | NewGen Construction",
+  title: "Giới thiệu về NewGen | NewGen Construction",
   description:
     "Giới thiệu NewGen, thông điệp từ ban lãnh đạo, giá trị cốt lõi, tầm nhìn và sứ mệnh. Tải hồ sơ doanh nghiệp NewGen.",
 };
@@ -94,7 +94,7 @@ export default function AboutPage() {
           <nav className={styles.breadcrumbs} aria-label="Đường dẫn">
             <Link href="/">Trang chủ</Link>
             <span aria-hidden="true">/</span>
-            <span aria-current="page">Về NewGen</span>
+            <span aria-current="page">Giới thiệu về NewGen</span>
           </nav>
           <div className={styles.split}>
             <div>

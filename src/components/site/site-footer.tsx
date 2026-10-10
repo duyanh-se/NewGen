@@ -17,7 +17,7 @@ export function SiteFooter() {
         </div>
         <nav className={styles.links} aria-label="Điều hướng cuối trang">
           <h2>Khám phá NewGen</h2>
-          <Link href="/gioi-thieu">Về NewGen <ArrowUpRight size={16} aria-hidden="true" /></Link>
+          <Link href="/gioi-thieu">Giới thiệu về NewGen <ArrowUpRight size={16} aria-hidden="true" /></Link>
           <Link href="/nang-luc-xay-dung">Năng lực xây dựng <ArrowUpRight size={16} aria-hidden="true" /></Link>
           <Link href="/du-an">Dự án tiêu biểu <ArrowUpRight size={16} aria-hidden="true" /></Link>
           <Link href="/blog">Blog <ArrowUpRight size={16} aria-hidden="true" /></Link>
