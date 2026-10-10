@@ -15,7 +15,7 @@ export function AboutMotion({ children }: { children: ReactNode }) {
       "section, [data-about-item], [data-about-background]",
     ));
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const desktop = window.matchMedia("(min-width: 1000px) and (min-height: 700px)");
+    const desktop = window.matchMedia("(min-width: 1000px) and (min-height: 700px) and (hover: hover) and (pointer: fine)");
     let observer: IntersectionObserver | undefined;
     let flight = 0;
     let cooldownUntil = 0;
@@ -77,6 +77,10 @@ export function AboutMotion({ children }: { children: ReactNode }) {
     };
 
     const wheel = (event: WheelEvent) => {
+      if (event.deltaY <= 0) {
+        interrupt();
+        return;
+      }
       if (!desktop.matches || reduced.matches || event.defaultPrevented || event.ctrlKey ||
         Math.abs(event.deltaX) >= Math.abs(event.deltaY) || document.querySelector('[role="dialog"]')) return;
       let element = event.target instanceof Element ? event.target : null;
@@ -102,24 +106,9 @@ export function AboutMotion({ children }: { children: ReactNode }) {
       let current = 0;
       starts.forEach((start, index) => { if (start <= y + 2) current = index; });
       const end = Math.max(starts[current], tops[current] + sections[current].offsetHeight - innerHeight);
-      const down = event.deltaY > 0;
-      let destination: number;
-      if (down) {
-        if (current === sections.length - 1 || y < end - 2) { accumulated = 0; return; }
-        if (sections[current].hasAttribute("data-about-native-next")) { accumulated = 0; return; }
-        destination = starts[current + 1];
-      } else {
-        // Keep the return from values native until the message reaches its start.
-        if (sections[current].hasAttribute("data-about-native-next") && y > starts[current] + 2) { accumulated = 0; return; }
-        // Keep reading long sections and the footer with native scrolling.
-        if (y > starts[current] + 2 && (y <= end + 2 || current === sections.length - 1)) { accumulated = 0; return; }
-        if (y > starts[current] + 2) destination = starts[current];
-        else if (current > 0) {
-          const previous = current - 1;
-          if (sections[previous].hasAttribute("data-about-native-next")) { accumulated = 0; return; }
-          destination = Math.max(starts[previous], tops[previous] + sections[previous].offsetHeight - innerHeight);
-        } else { accumulated = 0; return; }
-      }
+      if (current === sections.length - 1 || y < end - 2) { accumulated = 0; return; }
+      if (sections[current].hasAttribute("data-about-native-next")) { accumulated = 0; return; }
+      const destination = starts[current + 1];
       event.preventDefault();
       if (now - lastWheel > 180 || Math.sign(accumulated) !== Math.sign(event.deltaY)) accumulated = 0;
       lastWheel = now;
