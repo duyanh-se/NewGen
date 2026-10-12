@@ -1,12 +1,13 @@
-// PDF pages 14–15, printed pages 26–29, supplied NewGen profile.
+// Construction types and equipment: supplied NewGen profile, PDF pages 14–15.
+// Illustrations also use supplied Centa photos and Vinhomes Smart City imagery.
 export const constructionTypes = [
-  { name: "Chung cư", image: "pic23" },
+  { name: "Chung cư", image: "vinhomes-smart-city" },
   { name: "Nhà xưởng", image: "pic24" },
   { name: "Văn phòng", image: "office3" },
   { name: "Trường học", image: "pic27" },
-  { name: "Nhà phố shophouse", image: "pic25" },
+  { name: "Nhà phố shophouse", image: "centa2" },
   { name: "Villa", image: "pic26" },
-  { name: "Nhà ở tư nhân", image: "pic28" },
+  { name: "Nhà ở tư nhân", image: "centa3" },
   { name: "Nhà phố liền kề", image: "pic29" },
 ] as const;
 

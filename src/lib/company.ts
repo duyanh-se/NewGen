@@ -87,7 +87,7 @@ export const leaders = [
 export const services = [
   {
     name: "Xây dựng dân dụng",
-    image: "pic29",
+    image: "centa",
     text: "Thiết kế, xây dựng và hoàn thiện các công trình dân dụng như nhà, văn phòng, khu ký túc xá và nhiều dự án dân dụng khác.",
     tags: "Nhà ở · Văn phòng · Ký túc xá",
   },
@@ -105,7 +105,7 @@ export const services = [
   },
   {
     name: "Công trình thủy lợi",
-    image: "pic61",
+    image: "cong-thuy-loi-cai-lon",
     text: "Xây dựng các công trình thủy lợi, xử lý và thoát nước thải để đảm bảo đáp ứng xả thải theo quy định nhà nước",
     tags: "Thủy lợi · Xử lý thải · Hoàn thiện",
   },

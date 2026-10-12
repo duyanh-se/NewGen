@@ -131,16 +131,16 @@ export default function AboutPage() {
                 data-about-item=""
                 data-about-order="4"
                 href="/documents/newgen-ho-so-doanh-nghiep.pdf"
-                download="NewGen-Ho-so-doanh-nghiep.pdf"
+                download="Newgen Profile_file xem_3.pdf"
               >
-                <Download size={22} aria-hidden="true" /> Tải hồ sơ doanh nghiệp
+                <Download size={22} aria-hidden="true" /> Tải hồ sơ năng lực
               </a>
               <span
                 className={styles.downloadNote}
                 data-about-item=""
                 data-about-order="5"
               >
-                PDF · Bản giới thiệu công khai
+                PDF · Hồ sơ đầy đủ · 153 MB
               </span>
             </div>
           </div>
@@ -267,7 +267,7 @@ export default function AboutPage() {
           aria-hidden="true"
         >
           <Image
-            src="/images/pic29.webp"
+            src="/images/centa1.webp"
             alt=""
             fill
             sizes="(max-width: 900px) 100vw, 65vw"
