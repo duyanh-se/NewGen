@@ -198,13 +198,13 @@ export function ServicesSection() {
       const progress = Math.max(
         0,
         Math.min(
-          3,
+          cards.length - 1,
           (-bounds.top /
             Math.max(1, section.offsetHeight - screen.offsetHeight)) *
-            3,
+            (cards.length - 1),
         ),
       );
-      const current = Math.min(2, Math.floor(progress));
+      const current = Math.min(cards.length - 2, Math.floor(progress));
       const blend = Math.max(
         0,
         Math.min(1, progress - current),
@@ -224,7 +224,7 @@ export function ServicesSection() {
       });
       section.style.setProperty(
         "--services-progress",
-        String((progress + 1) / 4),
+        String((progress + 1) / cards.length),
       );
     };
     const schedule = () => {

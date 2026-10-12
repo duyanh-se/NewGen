@@ -103,12 +103,6 @@ export const services = [
     text: "Xây dựng các công trình hạ tầng kỹ thuật, giao thông đáp ứng nhu cầu khách hàng và sự phát triển chung của cộng đồng.",
     tags: "Giao thông · Điện · Cấp thoát nước",
   },
-  {
-    name: "Công trình thủy lợi",
-    image: "cong-thuy-loi-cai-lon",
-    text: "Xây dựng các công trình thủy lợi, xử lý và thoát nước thải để đảm bảo đáp ứng xả thải theo quy định nhà nước",
-    tags: "Thủy lợi · Xử lý thải · Hoàn thiện",
-  },
 ];
 
 // PDF page 13, printed pages 24–25. Figures describe the supplied profile.
