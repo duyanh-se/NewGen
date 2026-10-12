@@ -130,17 +130,18 @@ export default function AboutPage() {
                 className={styles.download}
                 data-about-item=""
                 data-about-order="4"
-                href="/documents/newgen-ho-so-doanh-nghiep.pdf"
-                download="Newgen Profile_file xem_3.pdf"
+                href="https://drive.google.com/file/d/1DIVEkslJcCimmMROrV4H07m2cS82dyaE/view?usp=drivesdk"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Download size={22} aria-hidden="true" /> Tải hồ sơ năng lực
+                <Download size={22} aria-hidden="true" /> Tải hồ sơ doanh nghiệp
               </a>
               <span
                 className={styles.downloadNote}
                 data-about-item=""
                 data-about-order="5"
               >
-                PDF · Hồ sơ đầy đủ · 153 MB
+                Hồ sơ đầy đủ trên Google Drive · Mở trong tab mới
               </span>
             </div>
           </div>
