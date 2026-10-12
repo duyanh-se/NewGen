@@ -19,7 +19,7 @@
 .service-scene-copy p { font-size: 16px; line-height: 1.7; color: var(--ng-muted); margin-top: 20px; }
 .service-scene-tags { margin-top: 30px; padding-top: 20px; border-top: 1px solid #dce5ed; color: var(--ng-blue); font-size: 13px; line-height: 1.6; }
 .services-steps { display: none; }
-.services-story[data-pinned] { height: 400svh; }
+.services-story[data-pinned] { height: 300svh; }
 .services-story[data-pinned] .services-screen { position: sticky; top: 0; height: 100svh; }
 .services-story[data-pinned] .services-content { height: 100%; display: grid; grid-template-rows: auto auto; align-content: center; row-gap: clamp(32px, 6svh, 56px); padding-block: 64px; }
 .services-story[data-pinned] .services-heading { margin-bottom: 0; }

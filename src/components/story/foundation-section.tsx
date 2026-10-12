@@ -284,7 +284,7 @@ export function FoundationSection() {
             <div>
               <Blocks aria-hidden="true" strokeWidth={1.2} />
               <p className="foundation-number">
-                04 <span>lĩnh vực</span>
+                03 <span>lĩnh vực</span>
               </p>
               <h3>Giải pháp xây dựng chủ lực</h3>
             </div>
@@ -292,7 +292,6 @@ export function FoundationSection() {
               <li>Xây dựng dân dụng</li>
               <li>Xây dựng công nghiệp</li>
               <li>Hạ tầng kỹ thuật</li>
-              <li>Công trình thủy lợi</li>
             </ul>
           </div>
         </div>

@@ -80,6 +80,9 @@ next-env.d.ts
 /supabase/.temp/
 /supabase/.branches/
 
+# Company profile is hosted on Google Drive.
+/public/documents/newgen-ho-so-doanh-nghiep.pdf
+
 # project-local configuration, docs, migrations and tests
 /.openai/
 /docs/
