@@ -83,7 +83,10 @@ export function StoryMotion({ children }: { children: ReactNode }) {
         ],
       ],
       [".partners", [".eyebrow", "h2", ".partner-marquee"]],
-      [".faq-section", [".eyebrow", "h2", ".faq-grid > div > p", ".faq-list"]],
+      [
+        ".faq-section",
+        [".eyebrow", "h2", ".faq-grid > div > p", ".partner-contact", ".faq-list"],
+      ],
       [
         ".contact-section",
         [
@@ -98,9 +101,9 @@ export function StoryMotion({ children }: { children: ReactNode }) {
     const sections = timelines.flatMap(([selector, groups]) => {
       const section = document.querySelector<HTMLElement>(selector);
       if (!section) return [];
-      const steps = groups.map(
-        (group) => section.querySelector<HTMLElement>(group)!,
-      );
+      const steps = groups
+        .map((group) => section.querySelector<HTMLElement>(group))
+        .filter((step): step is HTMLElement => step !== null);
       steps.forEach((step, index) => {
         step.setAttribute("data-time-step", "");
         step.style.setProperty("--time-enter", `${index * 70}ms`);

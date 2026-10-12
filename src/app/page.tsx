@@ -286,8 +286,7 @@ export default function Home() {
               <div>
                 <div className="eyebrow">THÔNG TIN HỮU ÍCH</div>
                 <h2>
-                  Trước khi{" "}
-                  <br />
+                  Trước khi <br />
                   bắt đầu hợp tác.
                 </h2>
                 <p>
@@ -295,7 +294,12 @@ export default function Home() {
                   <br />
                   để xây dựng một giải pháp phù hợp.
                 </p>
+                <Link className="text-link partner-contact" href="/lien-he">
+                  Trao đổi cùng NewGen{" "}
+                  <ArrowUpRight size={24} aria-hidden="true" />
+                </Link>
               </div>
+
               <Accordion multiple={false} className="faq-list">
                 {faqs.map(([q, a], i) => (
                   <AccordionItem value={"faq-" + i} key={q}>

@@ -110,7 +110,7 @@ export default function ConstructionCapabilityPage() {
                 <div className={styles.photo}>
                   <Image
                     src={`/images/${image}.webp`}
-                    alt={`Minh họa công trình ${name.toLowerCase()} trong hồ sơ NewGen`}
+                    alt={`Minh họa công trình ${name.toLowerCase()}`}
                     fill
                     sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 999px) 45vw, 290px"
                   />
@@ -118,29 +118,6 @@ export default function ConstructionCapabilityPage() {
                 <figcaption>{name}</figcaption>
               </figure>
             ))}
-          </div>
-          <div className={styles.specialties}>
-            <div data-capability-reveal="">
-              <div>
-                <span className={styles.eyebrow}>HẠNG MỤC CHUYÊN MÔN</span>
-                <h3>Hoàn thiện công trình</h3>
-              </div>
-            </div>
-            <div data-capability-reveal="">
-              <div>
-                <h4>Thi công chống thấm</h4>
-                <p>Xử lý các vấn đề chống thấm cho các công trình</p>
-              </div>
-            </div>
-            <div data-capability-reveal="">
-              <div>
-                <h4>Xử lý nứt bê tông</h4>
-                <p>
-                  Xử lý nứt bê tông trong phạm vi các hạng mục thi công chuyên
-                  môn.
-                </p>
-              </div>
-            </div>
           </div>
         </section>
 

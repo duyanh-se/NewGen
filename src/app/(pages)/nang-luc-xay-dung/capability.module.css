@@ -64,10 +64,6 @@
 .photo { position: relative; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 16px; background: var(--ng-pale); }
 .photo img { object-fit: cover; transition: transform 350ms ease; }
 .photoCard figcaption { padding-block: 16px; border-bottom: 1px solid #d8e5ef; font-size: 20px; font-weight: 500; line-height: 1.4; }
-.specialties { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 40px; margin-top: 64px; padding: 36px; border: 1px solid #dce5ed; border-radius: 16px; background: var(--ng-pale); }
-.specialties h3 { font-size: 24px; line-height: 1.3; font-weight: 600; margin-top: 12px; }
-.specialties h4 { font-size: 18px; line-height: 1.4; font-weight: 600; }
-.specialties p { font-size: 16px; line-height: 1.75; color: var(--ng-muted); margin-top: 12px; }
 .machineBanner { position: relative; isolation: isolate; height: clamp(380px, 60svh, 600px); overflow: clip; color: white; background: var(--ng-navy); }
 .bannerImage { position: absolute; inset: -24px 0; z-index: -2; transform: translate3d(0, var(--banner-shift, 0px), 0); }
 .bannerImage img { object-fit: cover; object-position: 60% center; }
@@ -119,8 +115,6 @@
   .constructionGrid,
   .machineGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .machineContent { grid-template-columns: minmax(0, 1fr); gap: 56px; }
-  .specialties { grid-template-columns: 1fr 1fr; gap: 28px; }
-  .specialties > :first-child { grid-column: 1 / -1; }
   .sectionHeading { gap: 32px; }
   .heroCopy h1 { font-size: 72px; letter-spacing: -3px; }
 }
@@ -143,7 +137,6 @@
   .constructionGrid { grid-template-columns: 1fr; gap: 28px; }
   .machineGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; }
   .photoCard figcaption { font-size: 20px; }
-  .specialties { grid-template-columns: 1fr; margin-top: 40px; padding: 26px 22px; }
   .machineBanner { height: 460px; }
   .bannerCopy h2 { font-size: 52px; letter-spacing: -1.8px; }
   .bannerCopy p { font-size: 17px; }
